@@ -5,15 +5,11 @@ import com.bh.crms.pojo.Crms;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddServiceImpl {
-
-    /**
-     * 添加客户
-     * @return
-     */
-    public int add(Crms crms) {
-        return CrmsDao.add(crms);
+/**
+ * 根据id删除
+ */
+public class DeleteService {
+    public int deleteById(String id){
+       return CrmsDao.deleteById(id);
     }
-
-
 }

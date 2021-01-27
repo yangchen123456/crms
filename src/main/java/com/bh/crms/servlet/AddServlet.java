@@ -19,7 +19,7 @@ import java.util.Date;
 @WebServlet(urlPatterns = "/add")
 public class AddServlet extends HttpServlet {
     @Autowired
-    private AddServiceImpl loginService;
+    private AddServiceImpl addService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,9 +54,9 @@ public class AddServlet extends HttpServlet {
         //构造方法
         Crms crms = new Crms(id,cname1,gender,date1,cellphone,email,description);
         //调用方法，传递对象
-        int add = loginService.add(crms);
+        int add = addService.add(crms);
         //根据返回值判断成功与否
-        ServletContext servletContext = this.getServletContext();
+//        ServletContext servletContext = this.getServletContext();
         if(1 == add){
             req.setAttribute("msg","添加成功");
         }else {
