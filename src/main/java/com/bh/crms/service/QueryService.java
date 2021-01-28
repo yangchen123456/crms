@@ -8,7 +8,12 @@ import java.util.List;
 
 @Service
 public class QueryService {
-    public List query(Crms crms){
-        return CrmsDao.query(crms);
+    /**
+     * 高级搜索
+     * @param crms
+     * @return
+     */
+    public List AdvancedQuery(Crms crms){
+        return CrmsDao.AdvancedQuery(crms);
     }
 }

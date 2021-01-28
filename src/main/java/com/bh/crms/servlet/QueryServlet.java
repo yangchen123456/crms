@@ -20,6 +20,7 @@ import java.util.List;
 public class QueryServlet extends HttpServlet {
     @Autowired
     private QueryService queryService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -31,20 +32,20 @@ public class QueryServlet extends HttpServlet {
         String gender = req.getParameter("gender");
         String cellphone = req.getParameter("cellphone");
         String email = req.getParameter("email");
+        System.out.println(cname1);
+        System.out.println(gender);
+        System.out.println(cellphone);
+        System.out.println(email);
         //uuid获取id
         String id = JdbcUtil.getId();
         //构造方法
-        if(cname1!=null ){
-            Crms crms = new Crms(cname1,gender,cellphone,email);
-            List list = queryService.query(crms);
-            req.setAttribute("list",list);
-            //跳转页面
-            req.getRequestDispatcher("list.jsp").forward(req,resp);
-        }else {
-            req.setAttribute("msg","请输入参数");
-            //跳转页面
-            req.getRequestDispatcher("msg.jsp").forward(req,resp);
-        }
 
+        Crms crms = new Crms(cname1, gender, cellphone, email);
+        List list = queryService.AdvancedQuery(crms);
+        req.setAttribute("list", list);
+        //跳转页面
+        req.getRequestDispatcher("list.jsp").forward(req, resp);
     }
+
 }
+

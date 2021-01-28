@@ -120,11 +120,11 @@ public class CrmsDao {
     }
 
 
-    public static List query(Crms crms){
+    public static List AdvancedQuery(Crms crms){
 //        String sql = "select * from tb_customer where cname=? and gender=? and cellphone=? and email=? ";
         //执行查询
-        String sql = "select * from tb_customer as t where(t.cname = ? or ? is null) or (t.gender = ? or ? is null)" +
-                "or (t.cellphone = ? or ? is null)or (t.email = ? or ? is null) ";
+        String sql = "select * from tb_customer as t where(t.cname  like ? or ? ='') and (t.gender like ? or ? ='')" +
+                "and (t.cellphone like ? or  ? ='') and (t.email like ? or ? ='') ";
         //设置值
         Object[] objects = {
                 crms.getCname(),crms.getCname(), crms.getGender(),crms.getGender(),

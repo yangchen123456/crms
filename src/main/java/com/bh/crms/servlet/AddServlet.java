@@ -1,11 +1,10 @@
 package com.bh.crms.servlet;
 
 import com.bh.crms.pojo.Crms;
-import com.bh.crms.service.AddServiceImpl;
+import com.bh.crms.service.AddService;
 import com.bh.crms.util.JdbcUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,13 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @WebServlet(urlPatterns = "/add")
 public class AddServlet extends HttpServlet {
     @Autowired
-    private AddServiceImpl addService;
+    private AddService addService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -5,7 +5,7 @@ import com.bh.crms.pojo.Crms;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddServiceImpl {
+public class AddService {
 
     /**
      * 添加客户
@@ -14,6 +14,5 @@ public class AddServiceImpl {
     public int add(Crms crms) {
         return CrmsDao.add(crms);
     }
-
 
 }
