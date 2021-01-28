@@ -123,8 +123,8 @@ public class CrmsDao {
     public static List AdvancedQuery(Crms crms){
 //        String sql = "select * from tb_customer where cname=? and gender=? and cellphone=? and email=? ";
         //执行查询
-        String sql = "select * from tb_customer as t where(t.cname  like ? or ? ='') and (t.gender like ? or ? ='')" +
-                "and (t.cellphone like ? or  ? ='') and (t.email like ? or ? ='') ";
+        String sql = "select * from tb_customer as t where(t.cname = ? or ? ='') and (t.gender = ? or ? ='')" +
+                "and (t.cellphone = ? or  ? ='') and (t.email = ? or ? ='') ";
         //设置值
         Object[] objects = {
                 crms.getCname(),crms.getCname(), crms.getGender(),crms.getGender(),
