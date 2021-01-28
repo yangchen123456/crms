@@ -76,7 +76,26 @@ public class Crms {
           this.email = email;
           this.description = description;
      }
+     public Crms( String cname, String gender, String cellphone, String email) {
+          this.cname = cname;
+          this.gender = gender;
+          this.cellphone = cellphone;
+          this.email = email;
+     }
      public Crms(){
 
+     }
+
+     @Override
+     public String toString() {
+          return "Crms{" +
+                  "cid='" + cid + '\'' +
+                  ", cname='" + cname + '\'' +
+                  ", gender='" + gender + '\'' +
+                  ", birthday=" + birthday +
+                  ", cellphone='" + cellphone + '\'' +
+                  ", email='" + email + '\'' +
+                  ", description='" + description + '\'' +
+                  '}';
      }
 }

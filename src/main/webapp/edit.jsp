@@ -57,12 +57,12 @@
   
   <body>
 <h3 align="center">编辑客户</h3>
-<form action="<c:url value='/msg.jsp'/>" method="post">
+<form action="update?id=${crms.cid}" method="post">
 <table border="0" align="center" width="40%" style="margin-left: 100px;">
 	<tr>
 		<td width="100px">客户名称</td>
 		<td width="40%">
-			<input type="text" name="cname"/>
+			<input type="text" name="cname" value="${crms.cname}"/>
 		</td>
 		<td align="left">
 			<label id="cnameError" class="error">&nbsp;</label>
@@ -71,9 +71,9 @@
 	<tr>
 		<td>客户性别</td>
 		<td>
-			<input type="radio" name="gender" value="男" id="male"/>
+			<input  type="radio" name="gender" value="男" id="male" ${crms.gender=="男" ? "checked='checked'" : ""}/>
 			<label for="male">男</label>
-			<input type="radio" name="gender" value="女" id="female"/>
+			<input type="radio" name="gender" value="女" id="female" ${crms.gender=="女" ? "checked='checked'" : ""}/>
 			<label for="female">女</label>
 		</td>
 		<td>
@@ -83,7 +83,7 @@
 	<tr>
 		<td>客户生日</td>
 		<td>
-			<input type="text" name="birthday" id="birthday" readonly="readonly"/>
+			<input value="${crms.birthday}" type="text" name="birthday" id="birthday" readonly="readonly"/>
 		</td>
 		<td>
 			<label id="birthdayError" class="error">&nbsp;</label>
@@ -92,25 +92,25 @@
 	<tr>
 		<td>手机</td>
 		<td>
-			<input type="text" name="cellphone"/>
+			<input value="${crms.cellphone}" type="text" name="cellphone"/>
 		</td>
 		<td>
 			<label id="cellphoneError" class="error">&nbsp;</label>
-		</td>		
+		</td>
 	</tr>
 	<tr>
 		<td>邮箱</td>
 		<td>
-			<input type="text" name="email"/>
+			<input value="${crms.email}" type="text" name="email"/>
 		</td>
 		<td>
 			<label id="emailError" class="error">&nbsp;</label>
-		</td>	
+		</td>
 	</tr>
 	<tr>
 		<td>描述</td>
 		<td>
-			<textarea rows="5" cols="30" name="description"></textarea>
+			<textarea  rows="5" cols="30" name="description">${crms.description}</textarea>
 		</td>
 		<td>
 			<label id="descriptionError" class="error">&nbsp;</label>

@@ -39,7 +39,7 @@
 		<td>${item.email}</td>
 		<td>${item.description}</td>
 		<td>
-			<a href="<c:url value='edit.jsp'/>">编辑</a>
+			<a href="<c:url value='findById?id=${item.cid}'/>">编辑</a>
 			<a href="<c:url value='delete?id=${item.cid}'/>">删除</a>
 		</td>
 	</tr>

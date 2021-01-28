@@ -17,8 +17,9 @@ public class DeleteServlet extends HttpServlet {
     private DeleteService deleteService;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //获取删除的id
         String id = req.getParameter("id");
-        System.out.println(id);
+        //调用方法传入id
         int i = deleteService.deleteById(id);
 
         if(1 == i){

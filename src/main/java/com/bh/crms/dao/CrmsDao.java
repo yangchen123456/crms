@@ -3,6 +3,7 @@ package com.bh.crms.dao;
 import com.bh.crms.pojo.Crms;
 import com.bh.crms.util.JdbcUtil;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
@@ -70,8 +71,74 @@ public class CrmsDao {
             //执行sql
             i = qr.update(sql, id);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("执行删除sql失败");
         }
         return i;
+    }
+
+
+    /**
+     * 根据id查询
+     * @param id
+     * @return
+     */
+    public static Crms findById (String id){
+        String sql = "select * from tb_customer where cid = ?";
+        Crms crms = null;
+        try {
+             crms = qr.query(sql, new BeanHandler<>(Crms.class),id);
+        } catch (SQLException e) {
+            System.out.println("执行根据id查询sql失败");
+        }
+        return  crms;
+    }
+
+
+    /**
+     * 根据id修改
+     * @param crms
+     * @return
+     */
+    public static Integer updateById(Crms crms){
+        //编写sql语句
+        String sql = "update tb_customer set cname=?,gender=?,birthday=?," +
+                "cellphone=?,email=?,description=?where cid = ?";
+        //设置值
+        Object[] objects = {
+                 crms.getCname(), crms.getGender(),
+                crms.getBirthday(), crms.getCellphone(),
+                crms.getEmail(), crms.getDescription(),crms.getCid()
+        };
+        int i = 0;
+        try {
+            //执行sql
+            i = qr.update(sql,objects);
+        } catch (SQLException throwables) {
+            System.out.println("执行根据id修改sql失败");
+        }
+        return i;
+    }
+
+
+    public static List query(Crms crms){
+//        String sql = "select * from tb_customer where cname=? and gender=? and cellphone=? and email=? ";
+        //执行查询
+        String sql = "select * from tb_customer as t where(t.cname = ? or ? is null) or (t.gender = ? or ? is null)" +
+                "or (t.cellphone = ? or ? is null)or (t.email = ? or ? is null) ";
+        //设置值
+        Object[] objects = {
+                crms.getCname(),crms.getCname(), crms.getGender(),crms.getGender(),
+                crms.getCellphone(), crms.getCellphone(),
+                crms.getEmail(),crms.getEmail()
+        };
+        List<Crms> list = null;
+        try {
+            list = qr.query(sql,new BeanListHandler<>(Crms.class),objects);
+        } catch (SQLException e) {
+            System.out.println("查询失败");
+        }
+        return list;
+
+
     }
 }
