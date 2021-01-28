@@ -1,20 +1,23 @@
 package com.bh.crms.util;
 
+import com.bh.crms.pojo.Crms;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.junit.Test;
 
 import javax.sql.DataSource;
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 public class JdbcUtil {
     //数据源
@@ -68,4 +71,45 @@ public class JdbcUtil {
         return uuid;
     }
 
-}
+
+    public static Crms tocrms(Map<String, String[]> map){
+
+        Crms crms = new Crms();
+
+        for (Map.Entry<String, String[]> m : map.entrySet()) {
+
+            String name = m.getKey();
+            String[] values = m.getValue();
+            //属性描述器：表示JavaBean类通过存储器导出一个属性
+            PropertyDescriptor pd=null;
+            try {
+                pd = new PropertyDescriptor(name, Crms.class);
+            } catch (IntrospectionException e) {
+                e.printStackTrace();
+            }
+
+            if (values!=null&& pd !=null) {
+
+                Method setter = pd.getWriteMethod();
+                try {
+                    if (values.length==1) {
+                        setter.invoke(crms, values[0]);
+                    }else {
+                        setter.invoke(crms, (Object)values);
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println("获取表单数据之后："+crms.toString());
+        return crms;
+    }
+
+    }
+
+

@@ -20,13 +20,13 @@ public class CrmsDao {
 
     public static int add(Crms crms) {
         //编写sql语句
-        String sql = "insert into tb_customer values(?,?,?,?,?,?,?)";
+        String sql = "insert into tb_customer values(?,?,?,?,?,?,?,?)";
 
         //设置值
         Object[] objects = {
                 crms.getCid(), crms.getCname(), crms.getGender(),
                 crms.getBirthday(), crms.getCellphone(),
-                crms.getEmail(), crms.getDescription()
+                crms.getEmail(), crms.getDescription(),0
         };
         int i = 0;
         try {
@@ -45,7 +45,7 @@ public class CrmsDao {
      */
     public static List findAll(){
         //编写sql语句
-        String sql = "select * from tb_customer ";
+        String sql = "select * from tb_customer where enable = 0";
         //执行查询
         List<Crms> list = null;
         try {
@@ -64,7 +64,7 @@ public class CrmsDao {
      */
     public static Integer deleteById(String id){
         //编写sql语句
-        String sql = "delete from tb_customer where cid = ?";
+        String sql = "update tb_customer set enable=1 where cid = ?";
 
         int i = 0;
         try {
@@ -102,7 +102,7 @@ public class CrmsDao {
     public static Integer updateById(Crms crms){
         //编写sql语句
         String sql = "update tb_customer set cname=?,gender=?,birthday=?," +
-                "cellphone=?,email=?,description=?where cid = ?";
+                "cellphone=?,email=?,description=? where cid = ?";
         //设置值
         Object[] objects = {
                  crms.getCname(), crms.getGender(),
@@ -123,14 +123,16 @@ public class CrmsDao {
     public static List AdvancedQuery(Crms crms){
 //        String sql = "select * from tb_customer where cname=? and gender=? and cellphone=? and email=? ";
         //执行查询
-        String sql = "select * from tb_customer as t where(t.cname = ? or ? ='') and (t.gender = ? or ? ='')" +
-                "and (t.cellphone = ? or  ? ='') and (t.email = ? or ? ='') ";
-        //设置值
+        String sql = "select * from tb_customer as t where(t.cname like ? or ? ='') and (t.gender = ? or ? ='')" +
+                "and (t.cellphone = ? or  ? ='') and (t.email = ? or ? ='') and enable = 0 ";
+        //设置参数值
         Object[] objects = {
-                crms.getCname(),crms.getCname(), crms.getGender(),crms.getGender(),
-                crms.getCellphone(), crms.getCellphone(),
-                crms.getEmail(),crms.getEmail()
+                "%"+crms.getCname().trim()+"%",crms.getCname().trim(),
+                crms.getGender().trim(),crms.getGender().trim(),
+                crms.getCellphone().trim(), crms.getCellphone().trim(),
+                crms.getEmail().trim(),crms.getEmail().trim()
         };
+
         List<Crms> list = null;
         try {
             list = qr.query(sql,new BeanListHandler<>(Crms.class),objects);

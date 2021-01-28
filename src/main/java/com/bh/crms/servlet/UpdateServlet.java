@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Map;
 
 @WebServlet(urlPatterns = "/update")
 public class UpdateServlet extends HttpServlet {
@@ -29,6 +31,7 @@ public class UpdateServlet extends HttpServlet {
          * 4.成功信息
          * 5.跳转页面
          */
+
         //获取参数
         String cname1 = req.getParameter("cname");
         String gender = req.getParameter("gender");
@@ -41,7 +44,7 @@ public class UpdateServlet extends HttpServlet {
             System.out.println("转化日期对象失败");
         }
         //获取id
-        String id = req.getParameter("id");
+        String id = req.getParameter("cid");
         String cellphone = req.getParameter("cellphone");
         String email = req.getParameter("email");
         String description = req.getParameter("description");

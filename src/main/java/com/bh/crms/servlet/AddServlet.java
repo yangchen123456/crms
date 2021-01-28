@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Map;
 
 @WebServlet(urlPatterns = "/add")
 public class AddServlet extends HttpServlet {
@@ -50,6 +51,8 @@ public class AddServlet extends HttpServlet {
         //uuid获取id
         String id = JdbcUtil.getId();
         //构造方法
+//        Map<String, String[]> map = req.getParameterMap();
+//        Crms crms = JdbcUtil.tocrms(map);
         Crms crms = new Crms(id,cname1,gender,date1,cellphone,email,description);
         //调用方法，传递对象
         int add = addService.add(crms);

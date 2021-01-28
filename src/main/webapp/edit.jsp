@@ -57,7 +57,7 @@
   
   <body>
 <h3 align="center">编辑客户</h3>
-<form action="update?id=${crms.cid}" method="post">
+<form action="update?cid=${crms.cid}" method="post">
 <table border="0" align="center" width="40%" style="margin-left: 100px;">
 	<tr>
 		<td width="100px">客户名称</td>
@@ -71,9 +71,10 @@
 	<tr>
 		<td>客户性别</td>
 		<td>
-			<input  type="radio" name="gender" value="男" id="male" ${crms.gender=="男" ? "checked='checked'" : ""}/>
+			<input  type="radio" name="gender" value="男" id="male" <c:if test="${crms.gender eq '男'}">checked</c:if>/>
+
 			<label for="male">男</label>
-			<input type="radio" name="gender" value="女" id="female" ${crms.gender=="女" ? "checked='checked'" : ""}/>
+			<input type="radio" name="gender" value="女" id="female" <c:if test="${crms.gender eq '女'}">checked</c:if>/>
 			<label for="female">女</label>
 		</td>
 		<td>

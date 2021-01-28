@@ -32,14 +32,7 @@ public class QueryServlet extends HttpServlet {
         String gender = req.getParameter("gender");
         String cellphone = req.getParameter("cellphone");
         String email = req.getParameter("email");
-        System.out.println(cname1);
-        System.out.println(gender);
-        System.out.println(cellphone);
-        System.out.println(email);
-        //uuid获取id
-        String id = JdbcUtil.getId();
         //构造方法
-
         Crms crms = new Crms(cname1, gender, cellphone, email);
         List list = queryService.AdvancedQuery(crms);
         req.setAttribute("list", list);

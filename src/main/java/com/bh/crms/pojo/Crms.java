@@ -10,6 +10,7 @@ public class Crms {
      private String cellphone; // 客户电话
      private String email; // 客户邮箱
      private String description;// 客户描述
+     private Integer enable;
 
      public String getCid() {
           return cid;
@@ -67,6 +68,14 @@ public class Crms {
           this.description = description;
      }
 
+     public Integer getEnable() {
+          return enable;
+     }
+
+     public void setEnable(Integer enable) {
+          this.enable = enable;
+     }
+
      public Crms(String cid, String cname, String gender, Date birthday, String cellphone, String email, String description) {
           this.cid = cid;
           this.cname = cname;
@@ -76,7 +85,8 @@ public class Crms {
           this.email = email;
           this.description = description;
      }
-     public Crms( String cname, String gender, String cellphone, String email) {
+
+     public Crms(String cname, String gender, String cellphone, String email) {
           this.cname = cname;
           this.gender = gender;
           this.cellphone = cellphone;
@@ -96,6 +106,7 @@ public class Crms {
                   ", cellphone='" + cellphone + '\'' +
                   ", email='" + email + '\'' +
                   ", description='" + description + '\'' +
+                  ", enable=" + enable +
                   '}';
      }
 }

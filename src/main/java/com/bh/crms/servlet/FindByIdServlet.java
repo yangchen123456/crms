@@ -19,6 +19,8 @@ public class FindByIdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
         //获取id参数
         String id = req.getParameter("id");
         //执行根据id查询
